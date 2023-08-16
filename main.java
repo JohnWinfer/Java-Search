@@ -1,4 +1,6 @@
+
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class main {
 
@@ -58,23 +60,18 @@ public class main {
 
     private static void bubble(ArrayList<Integer> list){
   
-        while(true){
+        for (int j = 0; j < list.size(); j++ ){
             int number = list.get(0);
             boolean stop = true;
-            for (int i = 1; i < list.size(); i++){
-                System.out.println(list.get(i));
+            for (int i = 1; i < (list.size() - j); i++){
                 if (number > list.get(i)){
                     Collections.swap(list, i, i-1);
-                    System.out.println(list);
-                    stop = false;
+                    render(list, i, 99);  
                 } 
                 else{
                     number = list.get(i);
-                    System.out.println(list);
+                    render(list, i, 99);
                 }
-            }
-            if (stop == true){
-                break;
             }
         }
 
@@ -154,15 +151,46 @@ public class main {
         return (i + 1);
     }
 
+    public static void render(ArrayList<Integer> list, int c1, int c2){
+        System.out.print("\033\143");
+        System.out.flush();
+        for (int i = 30; i > 0; i--){
+            for (int j = 0; j < 30; j++){
+                if (list.get(j) < i){
+                    System.out.print(" ");
+                }
+                else if(list.get(j) == c1 || list.get(j) == c2){
+                    System.out.print("@");
+                }
+                else{
+                                        
+                    System.out.print("#");
+                }
+            }
+            System.out.println("");
+            
+        }
+        try {
+                TimeUnit.MILLISECONDS.sleep(50);
+            } catch (InterruptedException e) {
+                System.out.println("got interrupted!");
+            }
+    }
+
 
     public static void main(String[] args){
         ArrayList<Integer> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 30; i++) {
             list.add(i + 1);
         }
         Collections.shuffle(list);
-        System.out.println(list);
-        selectionSort(list);
-        System.out.println(list);
+
+
+
+
+        Collections.shuffle(list);
+        //System.out.println(list);
+        bubble(list);
+        //System.out.println(list);
     }
 }
