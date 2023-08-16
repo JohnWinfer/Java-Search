@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>One Rectangle</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.12.0/p5.min.js"></script>
+</head>
+<body>
+<body bgcolor="black">
+<div id="top-bar">
+    <button id="button-1">Button 1</button>
+    <button id="button-2">Button 2</button>
+    <button id="button-3">Button 3</button>
+    <button id="button-4">Button 4</button>
+    <button id="button-5">Button 5</button>
+    <button id="button-6">Button 6</button>
+</div>
+
+<canvas id="canvas" width="1810" height="900"></canvas>
+<script>
+function drawRectangle() {
+    const canvas = document.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+
+
+    ctx.fillStyle = "rgb(0, 255, 0)";
+
+    ctx.strokeStyle = "rgb(0, 0, 0)";
+
+    const numbersArray = Array.from(Array(200)).map((_, i) => i);
+    console.log(numbersArray);
+    shuffle(numbersArray)
+    console.log(numbersArray);
+    for(let i = 0; i < 200; i++){
+        n = numbersArray[i];
+        console.log(n);
+        ctx.fillRect(i * 9 + 5, canvas.height - (numbersArray[i] * 4 + 50), 9, numbersArray[i] * 4 + 50);
+
+        ctx.strokeRect(i * 9 + 5, canvas.height - (numbersArray[i] * 4 + 50), 9, numbersArray[i] * 4 + 50);
+    }
+
+    function shuffle(array) {
+        let currentIndex = array.length,  randomIndex;
+
+
+        while (currentIndex != 0) {
+
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+
+        return array;
+        }
+
+}
+
+
+
+drawRectangle();
+
+
+const topBar = document.querySelector("#top-bar");
+
+const button1 = document.querySelector("#button-1");
+const button2 = document.querySelector("#button-2");
+const button3 = document.querySelector("#button-3");
+const button4 = document.querySelector("#button-4");
+const button5 = document.querySelector("#button-5");
+const button6 = document.querySelector("#button-6");
+
+
+button1.addEventListener("click", () => {
+    console.log("Button 1");
+});
+button2.addEventListener("click", () => {
+    console.log("Button 2");
+});
+button3.addEventListener("click", () => {
+    console.log("Button 3");
+});
+button4.addEventListener("click", () => {
+    console.log("Button 4!");
+});
+button5.addEventListener("click", () => {
+    console.log("Button 5");
+});
+button6.addEventListener("click", () => {
+    console.log("Button 6");
+});
+</script>
+</body>
+</html>
